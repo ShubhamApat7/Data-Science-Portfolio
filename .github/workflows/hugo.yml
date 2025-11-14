@@ -4,13 +4,16 @@ on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: write  # <-- REQUIRED to push to gh-pages
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: true   # <-- IMPORTANT for themes like PaperMod
+          submodules: true
           fetch-depth: 0
 
       - name: Setup Hugo
