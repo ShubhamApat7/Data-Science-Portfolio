@@ -3,13 +3,16 @@ title = "Individual Identification of Mugger Crocodiles using YOLOv8"
 date = 2024-04-20
 tags = ["Deep Learning", "Computer Vision", "Research"]
 [cover]
+image= "/images/mugger_cover.jpg"
 +++
 
 **Abstract**
 
 >Individual identification contributes significantly towards investigating behavioral mechanisms of animals and understanding underlying ecological principles. Most studies employ invasive procedures for individually identifying organisms. In recent times, computer-vision techniques have served as an alternative to invasive methods. However, these studies primarily rely on user input data collected from captivity or from individuals under partially restrained conditions. Challenges in collecting data from free-ranging individuals are higher when compared to captive populations. However, the former is a far more important priority for real-world applications.
 
+
 Individual Identification of mugger crocodile, is where my computer vision journey started. I was part of a deep learning research project under **Prof. Mehul Raval**, where we were provided a dataset of free-ranging muggger crocodiles collected using Unmanned Aerial Vehicle (UAV). The dataset contained total 160,000 images focusing on mugger's dorsal body. The data was collected from 160 individuals across 19 different locations along the western part of India.
+This was an extension to an already done [research](https://india.mongabay.com/2022/11/identifying-individual-mugger-crocodiles-using-drone-technology-to-minimise-conflicts/).
 
 <img src="/images/mugger.png" width=300>
 
@@ -41,9 +44,20 @@ For testing, we used new data collected six months after the training dataset. B
 
 We used two parameters, True Positive Rate (TPR) and True Negative Rate (TNR), to validate the efficiency of the trained models. Using YOLO-v5l, TPR (re-identification of trained muggers) and TNR (differentiating untrained muggers as ‘unknown’) values at the 0.84 decision threshold were 88.8% and 89.6%, respectively. The trained model showed 100% TNR for the non-mugger species, the Gharial, Gavialis gangeticus, and the Saltwater crocodile, Crocodylus porosus. 
 
-<div>
-  <img src="/images/mugger2.png" width="300" style="display:inline-block;">
-  <img src="/images/mugger3.png" width="360" style="display:inline-block;">
-</div>
+
+<img src="/images/yolov8_output1.png" width=600>
+<img src="/images/yolov8_output2.png" width=600>
+
+
+**Metrics**
+
+<img src="/images/confusion_matrix.png" width =600>
+
+This confusion matrix displays the predicted values on the y-axis and the true values on the x-axis. The diagonal line represents perfect predictions, where the predicted value matches the true value. 
+
+
+<img src="/images/other_metrics.png">
+
+precision(B): This metric shows some fluctuations but generally increases over time, indicating improving precision performance. recall(B): Similar to precision, the recall metric also improves as training progresses. mAP50(B): This metric, likely mean Average Precision with an IoU threshold of 0.5, starts low but steadily increases, suggesting better object detection/localization performance. mAP50-95(B): This metric, probably mean Average Precision averaged over multiple IoU thresholds (0.5 to 0.95), also improves consistently during training.
 
 The performance of the CNN model was reliable and accurate while using only 250 images per individual for training purposes. Showing that a bounding box approach (YOLO-v5l model) with background elimination is a promising method to individually identify free-ranging mugger crocodiles. Our manuscript demonstrates that UAV imagery appears to be a promising tool for non-invasive collection of data from free-ranging populations. It can be used to train open-source algorithms for individual identification. Further, the identification method is entirely based upon dorsal scute patterns, which can be applied to different crocodilian species, as well.

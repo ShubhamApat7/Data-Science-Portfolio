@@ -12,7 +12,7 @@
 Individual identification contributes significantly towards investigating behavioral mechanisms of animals and understanding underlying ecological principles. Most studies employ invasive procedures for individually identifying organisms. In recent times, computer-vision techniques have served as an alternative to invasive methods. However, these studies primarily rely on user input data collected from captivity or from individuals under partially restrained conditions. Challenges in collecting data from free-ranging individuals are higher when compared to captive populations. However, the former is a far more important priority for real-world applications.">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/projects/individual-identification-of-mugger-crocodile/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.b4c2d92c2be113ac5a84dc380901003f2b5cda3766f3a1e3e17c03aa160da3b5.css" integrity="sha256-tMLZLCvhE6xahNw4CQEAPytc2jdm86Hj4XwDqhYNo7U=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.698c882e3b65198c2057ffb8f6094fcca0275b8c7af9a70b9ce9c3c36328c7ff.css" integrity="sha256-aYyILjtlGYwgV/&#43;49glPzKAnW4x6&#43;acLnOnDw2Mox/8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -140,15 +140,20 @@ Individual identification contributes significantly towards investigating behavi
     <h1 class="post-title entry-hint-parent">
       Individual Identification of Mugger Crocodiles using YOLOv8
     </h1>
-    <div class="post-meta"><span title='2024-04-20 00:00:00 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;<span>4 min</span>
+    <div class="post-meta"><span title='2024-04-20 00:00:00 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;<span>5 min</span>
 
 </div>
   </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/mugger_cover.jpg" alt="">
+        
+</figure>
   <div class="post-content"><p><strong>Abstract</strong></p>
 <blockquote>
 <p>Individual identification contributes significantly towards investigating behavioral mechanisms of animals and understanding underlying ecological principles. Most studies employ invasive procedures for individually identifying organisms. In recent times, computer-vision techniques have served as an alternative to invasive methods. However, these studies primarily rely on user input data collected from captivity or from individuals under partially restrained conditions. Challenges in collecting data from free-ranging individuals are higher when compared to captive populations. However, the former is a far more important priority for real-world applications.</p>
 </blockquote>
-<p>Individual Identification of mugger crocodile, is where my computer vision journey started. I was part of a deep learning research project under <strong>Prof. Mehul Raval</strong>, where we were provided a dataset of free-ranging muggger crocodiles collected using Unmanned Aerial Vehicle (UAV). The dataset contained total 160,000 images focusing on mugger&rsquo;s dorsal body. The data was collected from 160 individuals across 19 different locations along the western part of India.</p>
+<p>Individual Identification of mugger crocodile, is where my computer vision journey started. I was part of a deep learning research project under <strong>Prof. Mehul Raval</strong>, where we were provided a dataset of free-ranging muggger crocodiles collected using Unmanned Aerial Vehicle (UAV). The dataset contained total 160,000 images focusing on mugger&rsquo;s dorsal body. The data was collected from 160 individuals across 19 different locations along the western part of India.
+This was an extension to an already done <a href="https://india.mongabay.com/2022/11/identifying-individual-mugger-crocodiles-using-drone-technology-to-minimise-conflicts/">research</a>.</p>
 <img src="/images/mugger.png" width=300>
 <p>Using a CNN model, we aim to individually identify free ranging mugger crocodiles, Crocodylus palustris based on their dorsal scute patterns. Scutes are hard calcium bony plates called osteoderms (Fig. 1) that form a crocodile&rsquo;s dorsal body. It serves as a unique identifier based on its placement on the dorsal body. With this background, we hypothesize that the developed CNN-based IID for mugger crocodiles will provide a robust understanding of behavioral processes and physiological patterns at an individual level, which in turn will contribute towards species conservation.</p>
 <p>The dataset had 160,000 images and their annotations (bounding boxes of scute patterns), we decided to use YOLOv8 as it is the state of the art object detection model, known for its speed and accuracy. The size of dataset was ~450GB, for data preprocessing and model training we were assigned access to ParamShavak supercoputer which use NVIDIA A6000 GPU!</p>
@@ -165,10 +170,13 @@ Individual identification contributes significantly towards investigating behavi
 </code></pre><p>This was first training version which acheived 97.5% mAP50, after that did hyperparameter tuning with <a href="%22https://docs.ultralytics.com/modes/train/#train-settings%22">train-settings</a> and the images-per-class which varied from 50,100,150,200,500 and even taking all 1000. But the final best accuracy acheived was with optimizer Adam, aumentations settings like perspective, flipud, fliplr, scale and 250 images per class whcih acheived <strong>99.5% mAP50</strong>.</p>
 <p>For testing, we used new data collected six months after the training dataset. Because of the time gap, the weather conditions had changed significantly, creating a noticeable difference between the training and test images.</p>
 <p>We used two parameters, True Positive Rate (TPR) and True Negative Rate (TNR), to validate the efficiency of the trained models. Using YOLO-v5l, TPR (re-identification of trained muggers) and TNR (differentiating untrained muggers as ‘unknown’) values at the 0.84 decision threshold were 88.8% and 89.6%, respectively. The trained model showed 100% TNR for the non-mugger species, the Gharial, Gavialis gangeticus, and the Saltwater crocodile, Crocodylus porosus.</p>
-<div>
-  <img src="/images/mugger2.png" width="300" style="display:inline-block;">
-  <img src="/images/mugger3.png" width="360" style="display:inline-block;">
-</div>
+<img src="/images/yolov8_output1.png" width=600>
+<img src="/images/yolov8_output2.png" width=600>
+<p><strong>Metrics</strong></p>
+<img src="/images/confusion_matrix.png" width =600>
+<p>This confusion matrix displays the predicted values on the y-axis and the true values on the x-axis. The diagonal line represents perfect predictions, where the predicted value matches the true value.</p>
+<img src="/images/other_metrics.png">
+<p>precision(B): This metric shows some fluctuations but generally increases over time, indicating improving precision performance. recall(B): Similar to precision, the recall metric also improves as training progresses. mAP50(B): This metric, likely mean Average Precision with an IoU threshold of 0.5, starts low but steadily increases, suggesting better object detection/localization performance. mAP50-95(B): This metric, probably mean Average Precision averaged over multiple IoU thresholds (0.5 to 0.95), also improves consistently during training.</p>
 <p>The performance of the CNN model was reliable and accurate while using only 250 images per individual for training purposes. Showing that a bounding box approach (YOLO-v5l model) with background elimination is a promising method to individually identify free-ranging mugger crocodiles. Our manuscript demonstrates that UAV imagery appears to be a promising tool for non-invasive collection of data from free-ranging populations. It can be used to train open-source algorithms for individual identification. Further, the identification method is entirely based upon dorsal scute patterns, which can be applied to different crocodilian species, as well.</p>
 
 
@@ -189,7 +197,7 @@ Individual identification contributes significantly towards investigating behavi
   <a class="next" href="http://localhost:1313/projects/bookmyshow-scraper/">
     <span class="title">Next »</span>
     <br>
-    <span>BookMyShow Scraper - I Got 60x Speedup by Running 4 Windows Instead of Threads</span>
+    <span>BookMyShow Scraper</span>
   </a>
 </nav>
 

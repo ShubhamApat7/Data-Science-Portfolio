@@ -140,18 +140,17 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">BookMyShow Scraper - I Got 60x Speedup by Running 4 Windows Instead of Threads
+    <h2 class="entry-hint-parent">BookMyShow Scraper
     </h2>
   </header>
   <div class="entry-content">
-    <p>The Challenge BookMyShow is notoriously difficult to scrape. They have:
-Advanced bot detection Dynamic JavaScript content Rate limiting CAPTCHA challenges I needed to scrape all 1,898 cities in India across 4 categories (plays, sports, events, activities).
-The Problem First attempt: Single-threaded Python script
-Result: 3 hours per city Total time: ~6,000 hours (way too slow) # This was painfully slow for city in cities: events = scrape_city(city) # 3 hours per city! Tried multithreading, but threads running in the background got blocked by BookMyShow’s detection.
+    <p>I had never made a scraper and the first scraper i was assigned to build was BookMyShow. I was asked to scrape the every event listed on all 1,898 cities in India across 4 categories (plays, sports, events, activities).
+BookMyShow is notoriously difficult to scrape. They have:
+Advanced bot detection Dynamic JavaScript content Rate limiting CAPTCHA challenges So as a newbie I started research on how to build a scraper from scratch, went on reddit, stack.com, medium and documentations of beautifulsoup, playwright and selenium. So I built a simple two step scraper, first step which can scrape just events urls from their cards using the selenium chromedriver and find the div class of card using beautifulsoup.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-05 00:00:00 +0000 UTC'>April 5, 2024</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to BookMyShow Scraper - I Got 60x Speedup by Running 4 Windows Instead of Threads" href="http://localhost:1313/projects/bookmyshow-scraper/"></a>
+  <footer class="entry-footer"><span title='2024-04-05 00:00:00 +0000 UTC'>April 5, 2024</span>&nbsp;·&nbsp;<span>4 min</span></footer>
+  <a class="entry-link" aria-label="post link to BookMyShow Scraper" href="http://localhost:1313/projects/bookmyshow-scraper/"></a>
 </article>
     </main>
     

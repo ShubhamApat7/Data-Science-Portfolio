@@ -3,6 +3,9 @@ title = "Real-Time Self-Driving Car with Lane Detection"
 date = 2024-01-15
 tags = ["Computer Vision", "Raspberry Pi", "OpenCV", "IoT"]
 description = "Built a Raspberry Pi-based self-driving car capable of lane detection, obstacle avoidance, and path navigation using real-time image processing."
+[cover]
+image="/images/autonomous_car.png"
+
 +++
 
 Developed an autonomous self-driving car using Raspberry Pi with advanced computer vision capabilities for lane detection and obstacle avoidance.
